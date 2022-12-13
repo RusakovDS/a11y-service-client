@@ -1,6 +1,5 @@
-import { ID } from '@datorama/akita';
-import {Url} from '../../projects/state/projects.store';
-
+import { ID } from "@datorama/akita";
+import { Url } from "../../projects/state/projects.store";
 
 export interface Rule {
   readonly id: ID;

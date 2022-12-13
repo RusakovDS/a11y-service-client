@@ -1,4 +1,4 @@
 export enum Status {
-  new = 'new',
-  old = 'old'
+  new = "new",
+  old = "old",
 }

@@ -1,12 +1,12 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Observable, Subscription} from 'rxjs';
-import {Project, Url} from '../projects/state/projects.store';
-import {ProjectsQuery} from '../projects/state/projects.query';
-import {ProjectsService} from '../projects/state/projects.service';
-import {Report, ReportsService} from './state';
-import {ReportsQuery} from './state/reports.query';
-import {Data} from '../../../shared/chart/data.model';
-import * as moment from 'moment';
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Observable, Subscription } from "rxjs";
+import { Project } from "../projects/state/projects.store";
+import { ProjectsQuery } from "../projects/state/projects.query";
+import { ProjectsService } from "../projects/state/projects.service";
+import { Report, ReportsService } from "./state";
+import { ReportsQuery } from "./state/reports.query";
+import { Data } from "../../../shared/chart/data.model";
+import * as moment from "moment";
 
 interface ProjectsTitles {
   id: number;
@@ -14,12 +14,11 @@ interface ProjectsTitles {
 }
 
 @Component({
-  selector: 'app-reports',
-  templateUrl: './reports.component.html',
-  styleUrls: ['./reports.component.scss']
+  selector: "app-reports",
+  templateUrl: "./reports.component.html",
+  styleUrls: ["./reports.component.scss"],
 })
 export class ReportsComponent implements OnInit, OnDestroy {
-
   isLoading$: Observable<boolean>;
   selected: Project;
   projectsList: ProjectsTitles[];
@@ -32,8 +31,7 @@ export class ReportsComponent implements OnInit, OnDestroy {
     private projectsQuery: ProjectsQuery,
     private projectsService: ProjectsService,
     private reportsService: ReportsService
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     this.projectsSubscription$ = this.projectsService
@@ -56,7 +54,9 @@ export class ReportsComponent implements OnInit, OnDestroy {
 
       this.reportsList = this.reportsQuery.getReportsByProjectId(projectId);
 
-      this.data = this.reportsQuery.getViolatedRulesCountByReports(this.reportsList);
+      this.data = this.reportsQuery.getViolatedRulesCountByReports(
+        this.reportsList
+      );
     }
   }
 

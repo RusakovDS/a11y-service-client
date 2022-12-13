@@ -1,36 +1,36 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
-import {PageNotFoundComponent} from './shared/error-handlers/404/page-not-found.component';
-import {HomeLayoutComponent} from './shared/layout/home-layout/home-layout.component';
-import {AuthGuardService} from './modules/auth/auth-guard.service';
-
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { PageNotFoundComponent } from "./shared/error-handlers/404/page-not-found.component";
+import { HomeLayoutComponent } from "./shared/layout/home-layout/home-layout.component";
+import { AuthGuardService } from "./modules/auth/auth-guard.service";
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    path: "",
+    redirectTo: "home",
+    pathMatch: "full",
   },
   {
-    path: 'home',
-    loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule),
+    path: "home",
+    loadChildren: () =>
+      import("./modules/home/home.module").then((m) => m.HomeModule),
     component: HomeLayoutComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
   },
   {
-    path: 'auth',
-    loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule),
+    path: "auth",
+    loadChildren: () =>
+      import("./modules/auth/auth.module").then((m) => m.AuthModule),
   },
   {
-    path: '**',
+    path: "**",
     component: PageNotFoundComponent,
-    pathMatch: 'full'
-  }
+    pathMatch: "full",
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}

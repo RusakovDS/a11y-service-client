@@ -1,6 +1,6 @@
-import {StoreConfig, ID, EntityState, EntityStore} from '@datorama/akita';
-import {Injectable} from '@angular/core';
-import {Report} from '../../reports/state';
+import { StoreConfig, ID, EntityState, EntityStore } from "@datorama/akita";
+import { Injectable } from "@angular/core";
+import { Report } from "../../reports/state";
 
 export interface Url {
   id: ID;
@@ -20,10 +20,10 @@ export interface Project {
 export interface ProjectsState extends EntityState<Project> {}
 
 @StoreConfig({
-  name: 'projects',
+  name: "projects",
 })
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class ProjectsStore extends EntityStore<ProjectsState, Project> {
   constructor() {

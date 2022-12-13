@@ -1,7 +1,6 @@
 @import "./src/styles";
 
 .reports-wrapper {
-
   .reports-container {
     @include flexbox();
 
@@ -15,7 +14,4 @@
       box-sizing: border-box;
     }
   }
-
-
 }
-

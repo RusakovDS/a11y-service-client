@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { StoreConfig, Store, ID } from '@datorama/akita';
+import { Injectable } from "@angular/core";
+import { StoreConfig, Store, ID } from "@datorama/akita";
 
 export interface AuthState {
   id: ID;
@@ -12,17 +12,17 @@ export interface AuthState {
 export function createInitialState(): AuthState {
   return {
     id: null,
-    email: '',
-    accessToken: '',
-    refreshToken: '',
+    email: "",
+    accessToken: "",
+    refreshToken: "",
     expiresIn: 0,
   };
 }
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: "root" })
 @StoreConfig({
-  name: 'auth',
-  resettable: true
+  name: "auth",
+  resettable: true,
 })
 export class AuthStore extends Store<AuthState> {
   constructor() {

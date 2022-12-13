@@ -1,35 +1,43 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
   FormGroup,
-  FormGroupDirective, NgForm,
-  Validators
-} from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
-import {Router} from '@angular/router';
-import {AuthQuery} from '../state';
-import {AuthService} from '../auth.service';
+  FormGroupDirective,
+  NgForm,
+  Validators,
+} from "@angular/forms";
+import { ErrorStateMatcher } from "@angular/material/core";
+import { Router } from "@angular/router";
+import { AuthQuery } from "../state";
+import { AuthService } from "../auth.service";
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+  isErrorState(
+    control: FormControl | null,
+    form: FormGroupDirective | NgForm | null
+  ): boolean {
     const invalidCtrl = !!(control && control.invalid && control.parent.dirty);
-    const invalidParent = !!(control && control.parent && control.parent.hasError('notSame') && control.parent.dirty);
+    const invalidParent = !!(
+      control &&
+      control.parent &&
+      control.parent.hasError("notSame") &&
+      control.parent.dirty
+    );
 
-    return (invalidCtrl || invalidParent);
+    return invalidCtrl || invalidParent;
   }
 }
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  selector: "app-register",
+  templateUrl: "./register.component.html",
+  styleUrls: ["./register.component.scss"],
 })
 export class RegisterComponent implements OnInit {
-
   loading = false;
   hide = true;
-  error = '';
+  error = "";
 
   registerForm: FormGroup;
   matcher = new MyErrorStateMatcher();
@@ -41,13 +49,11 @@ export class RegisterComponent implements OnInit {
     private authQuery: AuthQuery
   ) {
     // Redirect to home if already logged in
-    this.authQuery.isLogin$.subscribe(
-      isLogin => {
-        if (isLogin) {
-          this.router.navigate(['/']);
-        }
+    this.authQuery.isLogin$.subscribe((isLogin) => {
+      if (isLogin) {
+        this.router.navigate(["/"]);
       }
-    );
+    });
   }
 
   ngOnInit(): void {
@@ -55,16 +61,20 @@ export class RegisterComponent implements OnInit {
   }
 
   reactiveForm() {
-    this.registerForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      confirmPassword: ['']
-    }, {validator: this.checkPasswords});
+    this.registerForm = this.fb.group(
+      {
+        firstName: ["", Validators.required],
+        lastName: ["", Validators.required],
+        email: ["", [Validators.required, Validators.email]],
+        password: ["", [Validators.required, Validators.minLength(8)]],
+        confirmPassword: [""],
+      },
+      { validator: this.checkPasswords }
+    );
   }
 
-  checkPasswords(group: FormGroup) { // here we have the 'passwords' group
+  checkPasswords(group: FormGroup) {
+    // here we have the 'passwords' group
     const pass = group.controls.password.value;
     const confirmPass = group.controls.confirmPassword.value;
 
@@ -76,21 +86,22 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.registerForm.invalid) { return; }
+    if (this.registerForm.invalid) {
+      return;
+    }
 
     this.loading = true;
     const formValues = this.registerForm.value;
-    this.authService.register(formValues)
-      .subscribe(
-        () => {
-          this.router.navigate(['/auth/login'], { queryParams: { userCreated: true}});
-        },
-        error => {
-          this.error = error;
-          this.loading = false;
-        }
-      );
+    this.authService.register(formValues).subscribe(
+      () => {
+        this.router.navigate(["/auth/login"], {
+          queryParams: { userCreated: true },
+        });
+      },
+      (error) => {
+        this.error = error;
+        this.loading = false;
+      }
+    );
   }
-
-
 }

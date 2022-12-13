@@ -1,6 +1,5 @@
 @import "./src/styles";
 
-
 .menu-header {
   @include box-sizing(border-box);
   min-height: 64px;
@@ -26,7 +25,7 @@
       -webkit-font-smoothing: antialiased;
       font-size: 16px;
       line-height: 2rem;
-      letter-spacing: .0125em;
+      letter-spacing: 0.0125em;
       text-decoration: inherit;
       text-transform: inherit;
       margin: 0 0 -4px 0;
@@ -34,8 +33,7 @@
   }
 }
 
-@media screen and (max-width: $tablet) and (min-width: $phone){
-
+@media screen and (max-width: $tablet) and (min-width: $phone) {
   .mat-toolbar-single-row {
     padding: 0;
     justify-content: center;
@@ -52,9 +50,3 @@ mat-toolbar {
   background-color: $primary-color;
   color: #ffffff;
 }
-
-
-
-
-
-

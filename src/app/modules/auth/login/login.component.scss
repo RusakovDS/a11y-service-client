@@ -6,8 +6,6 @@
   @include justify-content(space-between);
   margin-top: 12px;
 
-
-
   .btn-block {
     width: 49%;
   }
@@ -20,19 +18,16 @@
   text-align: center;
   line-height: 40px;
   font-size: 70px;
-  font-family: 'Bungee Shade', cursive;
+  font-family: "Bungee Shade", cursive;
 }
 
 @media screen and (max-width: $phone) {
   .mat-title {
     font-size: 40px;
-
-  };
+  }
 }
 @media screen and (max-width: $tablet) and (min-width: $phone) {
   .mat-title {
     font-size: 50px;
-  };
+  }
 }
-
-
