@@ -1,0 +1,80 @@
+@import "src/stylesheets/abstracts/mixins";
+@import "src/stylesheets/abstracts/variables";
+
+.auth-wrapper {
+  @include flex-direction(column);
+  @include flexbox();
+  @include align-items(center);
+  height: 100%;
+  place-content :center;
+  background-color: $primary-color-dark;
+
+  .form {
+    min-width: 100%;
+    max-width: 300px;
+    width: 100%;
+  }
+
+  .full-width {
+    width: 100%;
+  }
+
+  .mat-card-content {
+    margin: 0;
+  }
+
+  mat-card-header {
+    text-align: center;
+    width: 100%;
+    display: block;
+    margin: 0;
+
+    mat-card-title {
+      line-height: normal;
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+  }
+
+  .mat-card {
+    padding: 20px;
+  }
+
+  .mat-raised-button {
+    line-height: 54px;
+
+    &.mat-primary {
+      background: $primary-color;
+    }
+    &.mat-warn {
+      background: $warning-color;
+    }
+  }
+
+  ::ng-deep .mat-progress-spinner {
+    display: inline-block;
+    margin-right: 5px;
+  }
+
+  ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #ffffff;
+  }
+}
+
+.btn-block {
+  font-size: 16px;
+}
+
+.box {
+  position:relative;
+  top:0;
+  opacity:1;
+  float:left;
+  width:100%;
+  max-width:330px;
+}
+
+
+
+
+

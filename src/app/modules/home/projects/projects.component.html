@@ -1,0 +1,63 @@
+<h1>Projects</h1>
+<div class="buttons-container">
+  <button
+    mat-raised-button color="primary"
+    routerLink=""
+    [queryParams]="{create:true}"
+  >
+    Create new
+  </button>
+  <button
+    mat-mini-fab
+    color="warn"
+    aria-label="icon button with a refresh icon"
+    (click)="refreshProjects()"
+  >
+    <mat-icon>refresh</mat-icon>
+  </button>
+</div>
+<mat-divider></mat-divider>
+<div class="spinner-container">
+  <mat-spinner *ngIf="isLoading$ | async; else projectsList" class="projects-list-spinner"></mat-spinner>
+</div>
+<ng-template #projectsList>
+  <mat-list class="projects-list">
+    <mat-list-item *ngFor="let project of projectsList$ | async">
+      <div class="project-info">
+        <div matLine style="margin: 8px 0">
+          <span> {{project.title}}</span>
+        </div>
+        <p matLine>
+          <span>Last update: {{determineTime(project.updateDate)}}</span>
+        </p>
+      </div>
+      <button
+        mat-icon-button
+        matTooltip="Run tests"
+        matTooltipPosition="above"
+        (click)="onRunClick(project.id, project.title)"
+      >
+        <mat-icon>play_arrow</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        matTooltip="Edit"
+        matTooltipPosition="above"
+        aria-label="icon-button with edit icon"
+        routerLink=""
+        [queryParams]="{id:project.id}"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        matTooltip="Delete"
+        matTooltipPosition="above"
+        aria-label="icon-button with clear icon"
+        (click)="onDelete(project.id)"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-list-item>
+  </mat-list>
+</ng-template>

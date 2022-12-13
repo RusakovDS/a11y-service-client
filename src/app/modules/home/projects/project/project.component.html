@@ -1,0 +1,77 @@
+<mat-dialog-content>
+  <form class="form" (submit)="onSubmit()" [formGroup]="projectForm">
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input
+        matInput
+        placeholder="Enter project title"
+        formControlName="title"
+      >
+      <mat-error *ngIf="projectForm.controls.title.hasError('required')">You must enter a value</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea
+        cdkTextareaAutosize
+        matInput
+        #input maxlength="100"
+        formControlName="description"
+      ></textarea>
+      <mat-error *ngIf="projectForm.controls.description.hasError('maxLength')"></mat-error>
+      <mat-hint align="end">{{input.value?.length || 0}}/100</mat-hint>
+    </mat-form-field>
+    <div class="urls-container">
+      <mat-label>
+        <span>Urls</span>
+        <button
+          mat-icon-button
+          color="primary"
+          type="button"
+          (click)="addNewUrl()"
+        >
+          <mat-icon>add</mat-icon>
+        </button>
+      </mat-label>
+      <div formArrayName="urls" class="urls">
+        <div *ngFor="let url of urlsList.controls; let i = index">
+          <mat-form-field [formGroupName]="i" class="url">
+            <mat-label>{{i + 1}}.</mat-label>
+            <input
+              matInput
+              placeholder="http://example.com"
+              formControlName="name"
+            >
+            <button *ngIf="urlsList.length !== 1"
+                    mat-icon-button matSuffix
+                    type="button"
+                    (click)="OnDeleteUrl(i)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+            <mat-error *ngIf="urlsList.controls[i].get('name').hasError('required')">You must enter a value!</mat-error>
+            <mat-error *ngIf="urlsList.controls[i].get('name').hasError('pattern')">Incorrect url!</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button
+    mat-raised-button
+    color="accent"
+    (click)="closeDialog()"
+  >
+    Cancel
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    (click)="onSubmit()"
+  >
+    <mat-spinner *ngIf="loading" diameter="30"></mat-spinner>
+    Save
+  </button>
+</mat-dialog-actions>
+

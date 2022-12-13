@@ -1,0 +1,40 @@
+<mat-sidenav-container class="layout-wrapper">
+  <mat-sidenav #snav
+               [mode]="mobileQuery.matches ? 'over' : 'side'"
+               [opened]="!mobileQuery.matches"
+               class="menu-container">
+    <app-menu-header></app-menu-header>
+    <app-menu-content></app-menu-content>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar class="content-header">
+      <button *ngIf="mobileQuery.matches" mat-icon-button (click)="snav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Acessibility Testing Service</span>
+      <span class="spacer"></span>
+<!--      <app-notifications></app-notifications>-->
+      <button mat-icon-button [mat-menu-trigger-for]="menu">
+        <mat-icon>info</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <a routerLink="profile">
+          <button mat-menu-item>
+            <mat-icon>person</mat-icon>
+            Profile
+          </button>
+        </a>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>exit_to_app</mat-icon>
+          Logout
+        </button>
+      </mat-menu>
+    </mat-toolbar>
+    <div class="content-wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+

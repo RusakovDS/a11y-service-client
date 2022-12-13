@@ -1,0 +1,21 @@
+@import "./src/styles";
+
+.reports-wrapper {
+
+  .reports-container {
+    @include flexbox();
+
+    .reports-list {
+      width: 30vw;
+      border-right: 1px solid $border;
+    }
+
+    .report-chart {
+      width: 70vw;
+      box-sizing: border-box;
+    }
+  }
+
+
+}
+

@@ -1,0 +1,16 @@
+@import "./src/styles";
+
+.mat-list-item {
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 300ms;
+
+  &:hover {
+    background-color: $neutral;
+  }
+}
+
+
+
+
+

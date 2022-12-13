@@ -1,0 +1,88 @@
+<div class="auth-wrapper">
+
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Register</mat-card-title>
+      <div>Already have an account? <strong><a [routerLink]="['/auth/login']">Log in</a></strong></div>
+    </mat-card-header>
+
+    <form class="form" (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+
+      <mat-card-content>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>First name</mat-label>
+          <input
+            matInput
+            required
+            formControlName="firstName"
+          >
+          <mat-error *ngIf="errorHandling('firstName', 'required')">You must enter a value</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Second name</mat-label>
+          <input
+            matInput
+            required
+            formControlName="lastName"
+          >
+          <mat-error *ngIf="errorHandling('lastName', 'required')">You must enter a value</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            required
+            formControlName="email"
+          >
+          <mat-error *ngIf="errorHandling('email', 'email')">Incorrect email</mat-error>
+          <mat-error *ngIf="errorHandling('email', 'required')">You must enter a value</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            [type]="hide ? 'password' : 'text'"
+            formControlName="password"
+            required
+          >
+          <button
+            mat-icon-button matSuffix
+            type="button"
+            (click)="hide = !hide"
+          >
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="errorHandling('password', 'required')">You must enter a value</mat-error>
+          <mat-error *ngIf="errorHandling('password', 'minlength')">Minimal 8 symbols</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Confirm password</mat-label>
+          <input
+            matInput
+            type="password"
+            formControlName="confirmPassword"
+            [errorStateMatcher]="matcher"
+          >
+          <mat-error
+            *ngIf="registerForm.hasError('notSame')"
+          >
+            Passwords do not match!
+          </mat-error>
+        </mat-form-field>
+      </mat-card-content>
+
+      <button
+        mat-raised-button
+        color="primary"
+        class="btn-block"
+      >
+        <mat-spinner *ngIf="loading" [diameter]="30"></mat-spinner>
+        Register
+      </button>
+    </form>
+  </mat-card>
+</div>

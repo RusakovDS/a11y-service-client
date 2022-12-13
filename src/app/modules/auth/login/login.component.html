@@ -1,0 +1,59 @@
+<div class="auth-wrapper">
+
+  <div class="mat-title">A11y Testing Service</div>
+
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+    </mat-card-header>
+
+    <form class="form" (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+      <mat-card-content>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            placeholder="Enter your email"
+            formControlName="email"
+          >
+          <mat-error *ngIf="errorHandling('email', 'email')">Incorrect email</mat-error>
+          <mat-error *ngIf="errorHandling('email', 'required')">You must enter a <strong>value</strong></mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            type="password"
+            placeholder="Enter your password"
+            formControlName="password"
+          >
+          <mat-error *ngIf="errorHandling('password', 'required')">You must enter a <strong>value</strong></mat-error>
+        </mat-form-field>
+      </mat-card-content>
+
+      <div class="button-wrapper">
+        <button
+          mat-raised-button
+          color="primary"
+          class="btn-block"
+          type="submit"
+        >
+          <mat-spinner *ngIf="loading" diameter="30"></mat-spinner>
+          Login
+        </button>
+        <a
+          [routerLink]="['/auth/register']"
+          mat-raised-button
+          color="warn"
+          class="btn-block"
+        >
+          Register
+        </a>
+      </div>
+    </form>
+    <mat-card-footer *ngIf="!!this.error">
+      <p>Invalid credentials!</p>
+    </mat-card-footer>
+  </mat-card>
+</div>

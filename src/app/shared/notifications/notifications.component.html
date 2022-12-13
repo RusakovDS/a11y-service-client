@@ -1,0 +1,29 @@
+<div class="notifications-container">
+  <button
+    mat-icon-button
+    [mat-menu-trigger-for]="notifications"
+  >
+    <mat-icon
+      [matBadge]="newReportsCount"
+      [matBadgeHidden]="false"
+      matBadgePosition="before"
+      matBadgeColor="accent"
+      matBadgeOverlap="false"
+      matBadgeSize="small"
+    >
+      notifications
+    </mat-icon>
+  </button>
+  <mat-menu #notifications="matMenu">
+    <ng-template matMenuContent >
+      <div *ngFor="let report of newReports">
+        <button
+          mat-menu-item
+          (mouseenter)="onNotificationFocus(report.reportId)"
+        >
+          <span>Report of {{report.projectTitle}} is ready!</span>
+        </button>
+      </div>
+    </ng-template>
+  </mat-menu>
+</div>

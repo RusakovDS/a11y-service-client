@@ -1,0 +1,15 @@
+<ng-container *ngIf="loading$ | async; else details"></ng-container>
+<ng-template #details class="report-details-wrapper">
+  <h1>Report #{{(report$ | async).id}}</h1>
+  <mat-tab-group animationDuration="1000ms">
+    <mat-tab *ngFor="let test of tests; let i = index" [label]="'Test #' + (i + 1)">
+      <ng-template matTabContent>
+        <div class="test-information">
+          <div>Timestamp: {{test.timestamp}}</div>
+          <div>URL: <a href="{{test.url.name}}" target="_blank">{{test.url.name}}</a></div>
+        </div>
+        <app-tests-violated-rules [data]="test.violatedRules"></app-tests-violated-rules>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+</ng-template>

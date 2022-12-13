@@ -1,0 +1,60 @@
+@import "./src/styles";
+
+
+.menu-header {
+  @include box-sizing(border-box);
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .menu-image {
+    @include flex(1);
+    max-width: $profile-image-size;
+    height: $profile-image-size;
+    border-radius: 50%;
+  }
+
+  .menu-title {
+    display: flex;
+    @include flex(1);
+    @include flex-direction(column);
+    margin-left: 8px;
+
+    .menu-name {
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-font-smoothing: antialiased;
+      font-size: 16px;
+      line-height: 2rem;
+      letter-spacing: .0125em;
+      text-decoration: inherit;
+      text-transform: inherit;
+      margin: 0 0 -4px 0;
+    }
+  }
+}
+
+@media screen and (max-width: $tablet) and (min-width: $phone){
+
+  .mat-toolbar-single-row {
+    padding: 0;
+    justify-content: center;
+  }
+
+  .menu-header {
+    .menu-title {
+      display: none;
+    }
+  }
+}
+
+mat-toolbar {
+  background-color: $primary-color;
+  color: #ffffff;
+}
+
+
+
+
+
+

@@ -1,0 +1,57 @@
+@import "./src/styles";
+
+.layout-wrapper {
+
+  mat-sidenav-content {
+    width: 100%;
+
+    .content-wrapper {
+      padding: 16px 16px 0 16px;
+    }
+  }
+
+  .menu-container {
+    display: flex;
+    @include flex-direction(column);
+    @include flex-shrink(0);
+    @include box-sizing(border-box);
+    background-color: #fff;
+    border-radius: 0 0 0 0;
+    z-index: 6;
+    width: $sidenav-width;
+    margin: 0;
+    height: 100%;
+    border-right-width: 0;
+    box-shadow: 0 6px 6px -3px rgba(0,0,0,0.2),
+                0px 10px 14px 1px rgba(0,0,0,0.14),
+                0px 4px 18px 3px rgba(0,0,0,0.12);
+    overflow: hidden;
+  }
+
+  @media screen and (max-width: $tablet) and (min-width: $phone) {
+    .menu-container {
+      width: $sidenav-width-tablet;
+    }
+  }
+
+  .content-header {
+    background-color: $primary-color;
+    color: #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    .spacer {
+      flex: 1 1 auto;;
+    }
+  }
+}
+
+.mat-menu-item {
+  .mat-icon {
+    margin-right: 8px;
+  }
+  .mat-icon-no-color {
+    color: #000000;
+  }
+}

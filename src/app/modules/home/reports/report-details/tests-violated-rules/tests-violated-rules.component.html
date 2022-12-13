@@ -1,0 +1,62 @@
+<div class="table-wrapper">
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia">
+  </mat-form-field>
+  <div class="mat-elevation-z8">
+
+    <table mat-table [dataSource]="dataSource" multiTemplateDataRows matSort>
+      <!--- Note that these columns can be defined in any order.
+      The actual rendered columns are set as a property on the row definition" -->
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Rule</th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="impact">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Impact</th>
+        <td mat-cell *matCellDef="let element"> {{element.impact}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Description</th>
+        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="help">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Help</th>
+        <td mat-cell *matCellDef="let element"> {{element.help}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="helpUrl">
+        <th mat-header-cell *matHeaderCellDef> Help URL</th>
+        <td mat-cell *matCellDef="let element"><a href="{{element.helpUrl}}" target="_blank">Click</a></td>
+      </ng-container>
+
+      <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+      <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+          <div class="example-element-detail"
+               [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed' "
+          >
+            <h4>Tags where errors has been detected:</h4>
+            <mat-list>
+              <mat-list-item *ngFor="let testNode of element.testNodes" class="tags-list">{{testNode.html}}</mat-list-item>
+            </mat-list>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let element; columns: displayedColumns;"
+          class="example-element-row"
+          [class.example-expanded-row]="expandedElement === element"
+          (click)="expandedElement = expandedElement === element ? null : element">
+      </tr>
+      <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+</div>

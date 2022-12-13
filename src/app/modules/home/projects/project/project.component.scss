@@ -1,0 +1,22 @@
+@import "src/styles";
+
+.form {
+  @include flexbox();
+  @include flex-direction(column);
+
+  .url {
+    display: block;
+  }
+
+  .urls-container {
+    .urls {
+      max-height: 170px;
+      overflow: auto;
+    }
+  }
+}
+
+
+
+
+

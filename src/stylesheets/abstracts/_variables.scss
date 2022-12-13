@@ -1,0 +1,33 @@
+// Regular font family
+$font-stack: Roboto, "Helvetica Neue", sans-serif !default;
+
+// Primary colors
+$primary-color: #3e50e1 !default;
+$primary-color-dark: darken($primary-color, 10%) !default;
+$primary-color-light: lighten($primary-color, 10%) !default;
+
+// Success colors
+$success-color: #0e9b27;
+$success-color-dark: darken($success-color, 10%) !default;
+$success-color-light: lighten($success-color, 10%) !default;
+
+// Warning colors
+$warning-color: #eba906;
+$warning-color-dark: darken($warning-color, 10%) !default;
+$warning-color-light: lighten($warning-color, 10%) !default;
+
+// Error colors
+$error-color: #cd1506;
+$error-color-dark: darken($error-color, 10%) !default;
+$error-color-light: lighten($error-color, 10%) !default;
+
+// Optional neutral color (Link hover, for example)
+$neutral: #ebebeb !default;
+$border: #d1d1d1 !default;
+
+// Sizes
+$phone: 426px !default;
+$tablet: 768px !default;
+$laptop: 1024px !default;
+
+

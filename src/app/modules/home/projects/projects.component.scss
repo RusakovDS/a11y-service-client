@@ -1,0 +1,41 @@
+@import "./src/styles";
+
+h1 {
+  margin-bottom: 16px;
+}
+
+mat-divider {
+  margin-top: 16px;
+}
+.projects-list-spinner {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.buttons-container {
+  button:first-child {
+    margin-right: 5px;
+  }
+}
+
+.projects-list {
+  @include flexbox();
+  @include flex-wrap(wrap);
+  padding: 20px 0;
+
+  mat-list-item {
+    @include box-sizing(border-box);
+    background: #ffffff;
+    box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+    border-radius: 4px;
+    margin-bottom: 8px;
+
+    .project-info {
+      @include flex(1);
+      p {
+        color: #666666;
+      }
+    }
+  }
+}
+

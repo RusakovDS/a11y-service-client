@@ -1,0 +1,27 @@
+@import "src/styles";
+
+* {
+  background-size: 100%;
+  background-color: $primary-color;
+}
+
+.container {
+  height: 100%;
+  width: auto;
+  color: white;
+  margin: 0 auto;
+  text-align: center;
+
+  h2 {
+    padding-top: 40px;
+  }
+
+  .mat-raised-button {
+    background-color: $warning-color;
+    color: #ffffff;
+  }
+
+}
+
+
+

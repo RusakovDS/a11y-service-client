@@ -1,0 +1,29 @@
+<section class="reports-wrapper">
+  <div>
+    <h1>Reports</h1>
+    <mat-form-field style="width: 100%">
+      <mat-label>Choose your project...</mat-label>
+      <mat-select (closed)="onSelect(selected)" [(value)]="selected">
+        <mat-option *ngFor="let project of projectsList" [value]="project.id">
+          {{project.title}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <mat-divider></mat-divider>
+  <mat-spinner *ngIf="isLoading$ | async;"></mat-spinner>
+  <div class="reports-container">
+    <div class="reports-list">
+      <mat-list>
+        <mat-list-item *ngFor="let report of reportsList; let i = index" class="reports-list">
+          <span>Report №{{i + 1}}</span>
+          <span mat-subheader>{{determineTime(report.createdDate)}}</span>
+          <a mat-raised-button [routerLink]="['/home/reports', report.id]">Details</a>
+        </mat-list-item>
+      </mat-list>
+    </div>
+    <div class="report-chart">
+      <app-chart [data]="data"></app-chart>
+    </div>
+  </div>
+</section>
